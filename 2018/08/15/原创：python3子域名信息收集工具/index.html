@@ -1,0 +1,235 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="http://wx1.sinaimg.cn/mw690/86146a5fgy1fu1sk0illvj20i20i23zg.jpg"/>
+	 <link rel="shortcut icon" href="http://wx1.sinaimg.cn/mw690/86146a5fgy1fu1sk0illvj20i20i23zg.jpg">
+	
+			
+    <title>
+    Hok 做安全的古天螺
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+
+			    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">Hok</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/docker-vul/">docker-vul</a></li><li><a class="category-link" href="/categories/工具/">工具</a></li><li><a class="category-link" href="/categories/漏洞/">漏洞</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="https://teazmh.github.io/" title="ZM">
+		                ZM
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="https://luckyjq.github.io" title="LuckyQ">
+		                LuckyQ
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="https://rliyuqing.github.io/" title="r_song">
+		                r_song
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="https://zheng19970225.github.io/" title="yfzheng">
+		                yfzheng
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/Hok1" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(http://www.linuxprobe.com/wp-content/uploads/2016/09/rsync1.jpg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >原创：python3子域名信息收集工具</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <h2 id="github-https-github-com-Hok1-Getinfo-From-Subdomain"><a href="#github-https-github-com-Hok1-Getinfo-From-Subdomain" class="headerlink" title="github: https://github.com/Hok1/Getinfo-From-Subdomain"></a>github: <a href="https://github.com/Hok1/Getinfo-From-Subdomain" target="_blank" rel="noopener">https://github.com/Hok1/Getinfo-From-Subdomain</a></h2><h3 id="工具为原创，不断更新中"><a href="#工具为原创，不断更新中" class="headerlink" title="工具为原创，不断更新中"></a>工具为原创，不断更新中</h3><h4 id="——转载请说明出处"><a href="#——转载请说明出处" class="headerlink" title="——转载请说明出处"></a>——转载请说明出处</h4><h2 id="写此脚本的想法："><a href="#写此脚本的想法：" class="headerlink" title="写此脚本的想法："></a>写此脚本的想法：</h2><blockquote>
+<p>  在帮助老师也算是实习过程中，某公司的一部分安全服务由我负责，其中有一项就是定期监控并收集子域名，与公司提供的子域名列表对比，整理出是否有未在公司监控范围内的子域名。当然不止这些，对每个子域名都需要进行相应的测试，如果发现漏洞，当然是要入每个月的安全测试报告。可是在收集子域名后，所有的子域名的信息都需要一个个打开浏览器访问查看信息实在是太麻烦了，所以于情于理，为了提高生产力，其实就是为了变懒，在一次睡觉前，突然有了开发这个工具的想法，于是说干就干，4个小时就把这个工具原型给开发出来了，肝疼。</p>
+<hr>
+</blockquote>
+<h2 id="简介、用途及使用方法："><a href="#简介、用途及使用方法：" class="headerlink" title="简介、用途及使用方法："></a>简介、用途及使用方法：</h2><blockquote>
+<p>简介：<br>  一款自动收集子域名相关信息的工具，默认为15线程。暂时没做参数，可以自行在代码中修改。<br>用途：<br>  在使用其他子域名收集工具比如fierce，dnsenum等工具收集完子域名后可以使用此工具收集每个子域名的相关信息并且输出为xlsx表格。可用于渗透测试以及我自己现在需要做的业务。。。。。<br>使用方法：<br>  将收集的子域名列表更名为subdomain.txt,放在脚本同一个目录下，然后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$python3 getinfo_subdomain.py</span><br></pre></td></tr></table></figure></p>
+<p>  结果将会输出在result.xlsx文档中</p>
+</blockquote>
+<h2 id="效果展示："><a href="#效果展示：" class="headerlink" title="效果展示："></a>效果展示：</h2><blockquote>
+<p><img src="https://wx1.sinaimg.cn/mw690/86146a5fly1fu9v2hf61kj205r064a9y.jpg" alt="pic1"><br><img src="http://wx4.sinaimg.cn/mw690/86146a5fly1fu9v0tz9ftj20jg05hq3p.jpg" alt="pic2"></p>
+</blockquote>
+<h2 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h2><blockquote>
+<p>使用requests，queue，socket，threading以及HTMLParser库开发。根据requests请求的返回码，以及返回的content交由HTMLParser处理后得到相关信息，最后输出为xlsx文本。因为是刚开发完成，所以有一些不足，如果返回码为200，并且返回content中没有title标签则最后输出xlsx表格信息栏为空，不过这种只是小部分，所以生产力还是有效的提高了。<br>                                                                                                                        ————————————————————仍然在改进，如果有建议可以邮件告诉我，604232242@qq.com。</p>
+</blockquote>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2018/08/15/原创：python3子域名信息收集工具/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2018/08/15/原创：python3子域名信息收集工具/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2018总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
