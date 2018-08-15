@@ -1,0 +1,239 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="http://wx1.sinaimg.cn/mw690/86146a5fgy1fu1sk0illvj20i20i23zg.jpg"/>
+	 <link rel="shortcut icon" href="http://wx1.sinaimg.cn/mw690/86146a5fgy1fu1sk0illvj20i20i23zg.jpg">
+	
+			
+    <title>
+    Hok 做安全的古天螺
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+
+			    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">Hok</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/docker-vul/">docker-vul</a></li><li><a class="category-link" href="/categories/工具/">工具</a></li><li><a class="category-link" href="/categories/漏洞/">漏洞</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="https://teazmh.github.io/" title="ZM">
+		                ZM
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="https://luckyjq.github.io" title="LuckyQ">
+		                LuckyQ
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="https://rliyuqing.github.io/" title="r_song">
+		                r_song
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="https://zheng19970225.github.io/" title="yfzheng">
+		                yfzheng
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/Hok1" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(https://wx3.sinaimg.cn/bmiddle/86146a5fly1fu9vjt5kphj20b408cmxa.jpg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >基于docker搭建.git泄露漏洞(附dockerfile)</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <h1 id="Dockerfile-https-github-com-Hok1-Dockerfile"><a href="#Dockerfile-https-github-com-Hok1-Dockerfile" class="headerlink" title="Dockerfile: https://github.com/Hok1/Dockerfile"></a>Dockerfile: <a href="https://github.com/Hok1/Dockerfile" target="_blank" rel="noopener">https://github.com/Hok1/Dockerfile</a></h1><blockquote>
+<p>部署方法请自行浏览文件gitvul.zip中README<br>                                                          ——————————————————————原创，转载请标明出处</p>
+<h1 id="一-了解漏洞"><a href="#一-了解漏洞" class="headerlink" title="一.了解漏洞"></a>一.了解漏洞</h1><h3 id="1-什么是git"><a href="#1-什么是git" class="headerlink" title="1.什么是git"></a>1.什么是git</h3><p>  Git是一款分布式版本控制软件。git入门及了解：<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000</a></p>
+<hr>
+<h3 id="2-git泄露漏洞是什么"><a href="#2-git泄露漏洞是什么" class="headerlink" title="2..git泄露漏洞是什么"></a>2..git泄露漏洞是什么</h3><p>  .git泄露主要是由于git使用不当，当开发完成后git clone到web根目录下后未删除.git文件导致外部可访问.git文件内容，通过.git中备份还原源代码导致严重后果。</p>
+<hr>
+</blockquote>
+<h1 id="二-修复方案"><a href="#二-修复方案" class="headerlink" title="二.修复方案"></a>二.修复方案</h1><blockquote>
+<h3 id="修复方案（最简便，并非最优）"><a href="#修复方案（最简便，并非最优）" class="headerlink" title="修复方案（最简便，并非最优）"></a>修复方案（最简便，并非最优）</h3><p>  删除web目录下.git文件，并且牢记git clone之后需要删除.git文件避免源码泄露。</p>
+<hr>
+</blockquote>
+<h1 id="三-漏洞重现（dockerfile）"><a href="#三-漏洞重现（dockerfile）" class="headerlink" title="三.漏洞重现（dockerfile）"></a>三.漏洞重现（dockerfile）</h1><blockquote>
+<p>1、Dockerfile<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">FROM fedora</span><br><span class="line"></span><br><span class="line">MAINTAINER H0k</span><br><span class="line"></span><br><span class="line">RUN yum -y install mariadb-server</span><br><span class="line">#初始化mysql</span><br><span class="line">ADD initmysql.sh /root/initmysql.sh</span><br><span class="line">RUN chmod 777 /root/initmysql.sh</span><br><span class="line">RUN /root/initmysql.sh</span><br><span class="line"></span><br><span class="line">#安装依赖</span><br><span class="line">RUN yum -y install tar bzip2-devel curl-devel freetype-devel gcc libjpeg-devel libpng-devel libxslt-devel libxml2-devel openssl-devel pcre-devel pcre-devel zlib-devel openssl make</span><br><span class="line"></span><br><span class="line">RUN groupadd www</span><br><span class="line">RUN useradd -g www -s /sbin/nologin -M www</span><br><span class="line">#安装php</span><br><span class="line">ADD php-7.2.8.tar.gz /usr/local/</span><br><span class="line">ADD installphp.sh /root/installphp.sh</span><br><span class="line">RUN chmod 777 /root/installphp.sh</span><br><span class="line">RUN /root/installphp.sh</span><br><span class="line"></span><br><span class="line">#安装nginx</span><br><span class="line">RUN yum -y install nginx</span><br><span class="line">RUN rm -f /etc/nginx/nginx.conf</span><br><span class="line">ADD nginx.conf /etc/nginx/nginx.conf</span><br><span class="line">#RUN mkdir 777 /usr/share/nginx/html/conf</span><br><span class="line">#ADD initmysql.sh /usr/share/nginx/html/conf/initmysql.sh</span><br><span class="line"></span><br><span class="line">#install git</span><br><span class="line">RUN yum -y install git</span><br><span class="line">ADD initmysql.sh /usr/share/nginx/html/initmysql.sh</span><br><span class="line">ADD initgit.sh /root/initgit.sh</span><br><span class="line">RUN chmod 777 /root/initgit.sh</span><br><span class="line">RUN /root/initgit.sh</span><br><span class="line"></span><br><span class="line">EXPOSE 80</span><br><span class="line">EXPOSE 3306</span><br></pre></td></tr></table></figure></p>
+<p>2、initgit.sh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">cd /usr/share/nginx/html</span><br><span class="line">git init</span><br><span class="line"></span><br><span class="line">git config --global user.email &quot;h0k@example.com&quot;</span><br><span class="line">git config --global user.name &quot;h0k&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">git add index.html</span><br><span class="line">git add initmysql.sh</span><br><span class="line">git commit -m &quot;for test</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h1 id="四、漏洞利用"><a href="#四、漏洞利用" class="headerlink" title="四、漏洞利用"></a>四、漏洞利用</h1><blockquote>
+<p>  在部署后docker后通过访问127.0.0.1/.git/文件名，可以遍历.git目录下所有文件。通过.git/index了解结构，.git/objects/下载文件<br>  利用工具：GITHACK：<a href="https://github.com/lijiejie/GitHack" target="_blank" rel="noopener">https://github.com/lijiejie/GitHack</a></p>
+</blockquote>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2018/08/15/搭建.git泄露/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2018/08/15/搭建.git泄露/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2018总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
